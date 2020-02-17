@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-from main import c
+from netmiko import ConnectHandler
 from pprint import pprint
 
-def get_interface_rates():
-    output = c.send_command("show interfaces | in line|input rate|output rate")
+def get_interface_rates(connection):
+    output = connection.send_command("show interfaces | in line|input rate|output rate")
     output_list = output.split("\n")
 
     ietf_rates = {}
@@ -44,6 +44,3 @@ def get_interface_rates():
             )
 
     return ietf_rates
-
-if __name__ == "__main__":
-    pprint(get_interface_rates())
