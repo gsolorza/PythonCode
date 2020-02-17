@@ -3,7 +3,7 @@
 from main import c
 from pprint import pprint
 
-def main():
+def get_interface_rates():
     output = c.send_command("show interfaces | in line|input rate|output rate")
     output_list = output.split("\n")
 
@@ -46,4 +46,4 @@ def main():
     return ietf_rates
 
 if __name__ == "__main__":
-    pprint(main())
+    pprint(get_interface_rates())
