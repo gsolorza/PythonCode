@@ -1,5 +1,4 @@
 import csv
-from netmiko import ConnectHandler
 
 def unpack_device_list():
     with open("device_list.csv") as file:
