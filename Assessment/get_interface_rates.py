@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 
-from netmiko import ConnectHandler
-from pprint import pprint
-
 def get_interface_rates(connection):
     output = connection.send_command("show interfaces | in line|input rate|output rate")
     output_list = output.split("\n")

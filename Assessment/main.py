@@ -1,13 +1,20 @@
 #!/usr/bin/env python3
 
-from napalm import get_network_driver
-from pprint import pprint
+from netmiko import ConnectHandler
+from device_list import unpack_device_list
+from get_interface_rates import get_interface_rates
+from get_config import get_config
+from tqdm import tqdm
 
-driver = get_network_driver('ios')
+device_list = unpack_device_list()
 
-device = driver("10.100.1.82", "cisco", "cisco")
-device.open()
+def connect(device_list, task):
+    for device in tqdm(device_list, ascii=True):
+        try:
+            connection = ConnectHandler(**device)
+            task(connection)
+        except:
+            print("SOMETHING WENT WRONG CONNECTING TO HOST "+device["host"]+" VIA SSH")
 
-pprint(device.get_interfaces_counters())
 
-
+connect(device_list, get_config)

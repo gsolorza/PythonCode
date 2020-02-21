@@ -5,9 +5,9 @@ from pprint import pprint
 
 driver = get_network_driver('ios')
 
-device = driver("10.100.1.82", "cisco", "cisco")
+device = driver("10.10.10.10", "cisco", "cisco")
 device.open()
 
-pprint(device.get_interfaces_counters())
+counters = device.get_interfaces_counters()
 
 

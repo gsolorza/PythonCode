@@ -1,16 +1,7 @@
 #!/usr/bin/env python3
 
-from device_list import unpack_device_list, connect
-from tqdm import tqdm
-
-device_list = unpack_device_list()
-
-for device in tqdm(device_list, ascii=True):
-    connection = connect(**device)
-    try:
-        output = connection.send_command("show running-config")
-    except:
-        continue
+def get_config(connection):
+    output = connection.send_command("show running-config")
     hostname = str()
     for line in output.split("\n"):
         if "hostname" in line:
