@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 from netmiko import ConnectHandler
-from Assessment.device_list import unpack_device_list
-import Assessment.get_config
-import Assessment.get_interface_rates
+from device_list import unpack_device_list
+from get_config import get_config
+from get_interface_rates import get_interface_rates
 from tqdm import tqdm
 
 device_list = unpack_device_list()
