@@ -1,4 +1,9 @@
 device_type,host,username,password
-cisco_ios,192.168.243.5,dd.ofigueira,Alf4lf4l.bolt3drunn3r.2025
-cisco_ios,192.168.243.6,dd.ofigueira,Alf4lf4l.bolt3drunn3r.2025
-cisco_ios,192.168.243.1,dd.ofigueira,Alf4lf4l.bolt3drunn3r.2025
+cisco_xr,1.1.1.1,admin,admin
+cisco_xr,2.2.2.2,admin,admin
+cisco_xr,3.3.3.3,admin,admin
+cisco_xr,4.4.4.4,admin,admin
+cisco_xr,5.5.5.5,admin,admin
+cisco_xr,6.6.6.6,admin,admin
+cisco_ios,10.10.10.10,cisco,cisco
+cisco_ios,20.20.20.20,cisco,cisco
