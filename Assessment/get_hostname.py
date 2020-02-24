@@ -2,7 +2,7 @@
 
 def get_hostname(connection):
     if connection.device_type == "cisco_ios":
-        output = connection.send_command("show run | sec hostname")
+        output = connection.send_command("show run | in hostname")
         hostname = output.strip("hostname ")
         return hostname
     elif connection.device_type == "cisco_xr":
