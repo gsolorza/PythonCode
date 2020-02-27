@@ -46,9 +46,9 @@ def get_interface_rates(connection):
     else:
         print("THE OS SPECIFIED DO NOT SUPPORT THIS FUNCTION")
 
-def get_interface_usage(connection):
+def get_interface_status(connection):
     if connection.device_type == "cisco_ios":
-        output = connection.send_command("show interface status", use_textfsm=True)
+        output = connection.send_command("show interfaces", use_textfsm=True)
         pprint(output)
 
     else:
