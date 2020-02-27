@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import csv
 
 def unpack_device_list():

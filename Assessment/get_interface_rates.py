@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 from pprint import pprint
 
+def get_interfaces(connection):
+    output = connection.send_command("show interfaces", use_textfsm=True)
+    pprint(output)
+
 def get_interface_rates(connection):
     if connection.device_type == "cisco_ios":
         output = connection.send_command("show interfaces | in line|input rate|output rate")
@@ -47,9 +51,5 @@ def get_interface_rates(connection):
         print("THE OS SPECIFIED DO NOT SUPPORT THIS FUNCTION")
 
 def get_interface_status(connection):
-    if connection.device_type == "cisco_ios":
-        output = connection.send_command("show interfaces", use_textfsm=True)
-        pprint(output)
-
-    else:
-        print("THE OS SPECIFIED DO NOT SUPPORT THIS FUNCTION")
+    output = connection.send_command("show interfaces", use_textfsm=True)
+    pprint(output)
