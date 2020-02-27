@@ -3,9 +3,10 @@
 from netmiko import ConnectHandler
 from device_list import unpack_device_list
 from get_config import get_config
-from get_interface_rates import get_interface_rates
+from get_interface_rates import get_interface_usage
 from get_hostname import get_hostname
 from tqdm import tqdm
+from pprint import pprint
 
 device_list = unpack_device_list()
 
@@ -14,7 +15,8 @@ def connect(device_list):
         try:
             connection = ConnectHandler(**device)
             hostname = get_hostname(connection)
-            get_config(connection, hostname)
+            # get_config(connection, hostname)
+            pprint(get_interface_usage(connection))
             
         except:
             print("SOMETHING WENT WRONG CONNECTING TO HOST "+device["host"]+" VIA SSH")
