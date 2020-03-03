@@ -7,4 +7,4 @@ def unpack_device_list():
         devices = csv.DictReader(file)
         device_list = [dev for dev in devices]
         return device_list
-    
+

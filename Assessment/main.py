@@ -21,7 +21,7 @@ def connect(device_list):
         except:
             print("SOMETHING WENT WRONG CONNECTING TO HOST "+device["host"]+" VIA SSH")
         print(connection.host)
-        get_clock(connection)
+        get_interface_status(connection)
 
 if __name__ == "__main__":
     connect(device_list)
