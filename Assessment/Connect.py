@@ -5,9 +5,10 @@ import sys
 
 class Connect_Manager():
 
-    def connect(self, **devices):
+    @staticmethod
+    def connect(**device):
         try:
-            return ConnectHandler(**self.device)
+            return ConnectHandler(**device)
         except Exception as failure:
             print("THERE WAS AN ERROR TRYING TO CONNECT TO THE DEVICE:\n--> {} <--".format(failure))
 

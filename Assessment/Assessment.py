@@ -21,7 +21,7 @@ def write(filename, data, path):
 
 class Assessment():
 
-    ios_commands = ["show version"]
+    ios_commands = ["show version", "show clock"]
 
     def __init__(self, customer_name):
         self.customer_name = customer_name
@@ -29,7 +29,7 @@ class Assessment():
 
     def create_folder_structure(self):
         folders = ["CISCO_IOS"]
-        
+        print(self.project_folder)
         os.makedirs(self.project_folder, exist_ok=True)
 
         for folder in folders:
@@ -40,27 +40,21 @@ class Assessment():
                 path = os.path.join(device_type_folder, directory)
                 os.makedirs(path, exist_ok=True)
 
-    # def connect(self):
-    #     try:
-    #         return ConnectHandler(**self.device)
-    #     except Exception as failure:
-    #         print("THERE WAS AN ERROR TRYING TO CONNECT TO THE DEVICE:\n--> {} <--".format(failure))
-    #         sys.exit(1)
-
     def check_device_status(self, connection, commands):
         if "cisco_ios" in connection.device_type:
             device_type_folder = os.path.join(self.project_folder, connection.device_type.upper())
             for command in commands:
-                output = connection.send_command(command, use_textfsm=True)
-                json_out = json.dumps(output, indent=2)
+                json_output = connection.send_command(command, use_textfsm=True)
+                json_string = json.dumps(json_output, indent=2)
                 hostname = connection.base_prompt
                 directory = command.replace(" ", "_")
                 path = os.path.join(device_type_folder, directory)
-                write(hostname, json_out, path)
+                write(hostname, json_string, path)
+
+customer = Assessment("Salcobrand")
+customer.create_folder_structure()
 
 for device in tqdm(devices, ascii=True):
-    customer = Assessment("Salcobrand")
-    customer.create_folder_structure()
-    connection = Connect_Manager(device)
+    connection = Connect_Manager.connect(**device)
     customer.check_device_status(connection, customer.ios_commands)
 
