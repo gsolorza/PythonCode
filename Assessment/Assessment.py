@@ -7,6 +7,7 @@ import os
 import sys
 from netmiko import ConnectHandler
 from device_list import unpack_device_list
+from Connect import Connect_Manager
 
 devices = unpack_device_list()
 
@@ -21,12 +22,10 @@ def write(filename, data, path):
 class Assessment():
 
     ios_commands = ["show version"]
-    parent_folder = os.getcwd()
 
-    def __init__(self, customer_name, **device):
+    def __init__(self, customer_name):
         self.customer_name = customer_name
-        self.device = device
-        self.project_folder = os.path.join(Assessment.parent_folder, self.customer_name)
+        self.project_folder = os.path.join(os.getcwd(), self.customer_name)
 
     def create_folder_structure(self):
         folders = ["CISCO_IOS"]
@@ -41,12 +40,12 @@ class Assessment():
                 path = os.path.join(device_type_folder, directory)
                 os.makedirs(path, exist_ok=True)
 
-    def connect(self):
-        try:
-            return ConnectHandler(**self.device)
-        except Exception as failure:
-            print("THERE WAS AN ERROR TRYING TO CONNECT TO THE DEVICE:\n--> {} <--".format(failure))
-            sys.exit(1)
+    # def connect(self):
+    #     try:
+    #         return ConnectHandler(**self.device)
+    #     except Exception as failure:
+    #         print("THERE WAS AN ERROR TRYING TO CONNECT TO THE DEVICE:\n--> {} <--".format(failure))
+    #         sys.exit(1)
 
     def check_device_status(self, connection, commands):
         if "cisco_ios" in connection.device_type:
@@ -60,8 +59,8 @@ class Assessment():
                 write(hostname, json_out, path)
 
 for device in tqdm(devices, ascii=True):
-    customer = Assessment("Salcobrand", **device)
+    customer = Assessment("Salcobrand")
     customer.create_folder_structure()
-    connection = customer.connect()
+    connection = Connect_Manager(device)
     customer.check_device_status(connection, customer.ios_commands)
 
