@@ -6,10 +6,11 @@ import os
 import sys
 from device_list import unpack_device_list
 from connect import ConnectManager as connect
+import pandas as pd
 
 devices = unpack_device_list()
 
-def write(filename, data, path):
+def write(filename, path, data):
     try:
         os.chdir(path)
         with open(filename, "w+") as output:
@@ -32,16 +33,22 @@ class Assessment:
         for folder in folders:
             device_type_folder = os.path.join(self.project_folder, folder)
             os.makedirs(device_type_folder, exist_ok=True)
-            for device in devices_data:
-                for key in device.keys():
-                    directory = key
-                    path = os.path.join(device_type_folder, directory)
-                    os.makedirs(path, exist_ok=True)
+        for device in devices_data:
+            for hostname, device_data in device.items():
+                directory = hostname
+                path = os.path.join(device_type_folder, directory)
+                os.makedirs(path, exist_ok=True)
+                for data in device_data:
+                    for command, output in data.items():
+                            write(command, path, output)
+
+
 
 customer = Assessment("Salcobrand")
 devices_data = connect.ssh(devices, customer.ios_commands)
 pprint(devices_data)
 # customer.create_folder_structure(devices_data)
+
 
 
 
