@@ -20,7 +20,7 @@ def write(filename, path, data):
 
 class Assessment:
 
-    ios_commands = ["show version", "show clock"]
+    ios_commands = ["show version", "show clock", "show run", "show interfaces", "show interface status", "show process cpu", "show process memory sorted"]
 
     def __init__(self, customer_name):
         self.customer_name = customer_name
@@ -47,7 +47,7 @@ class Assessment:
 customer = Assessment("Salcobrand")
 devices_data = connect.ssh(devices, customer.ios_commands)
 pprint(devices_data)
-# customer.create_folder_structure(devices_data)
+customer.create_folder_structure(devices_data)
 
 
 

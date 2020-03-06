@@ -20,7 +20,8 @@ class ConnectManager:
                 output_list = connection.send_command(command, use_textfsm=True)
                 cm = command.replace(" ", "_")
                 if isinstance(output_list, list):
-                    dcom[hostname].append({cm: json.dumps(output_list[0])})
+                    # for output in output_list:
+                    dcom[hostname].append({cm: json.dumps(output_list)})
                 elif isinstance(output_list, str):
                     dcom[hostname].append({cm: output_list})
             commands_output.append(dcom)
