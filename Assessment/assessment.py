@@ -12,12 +12,20 @@ from dataframestest import dataframe
 devices = unpack_device_list()
 
 def write(filename, path, data):
-    try:
-        os.chdir(path)
-        with open(filename, "w+") as output:
-            output.write(data)
-    except Exception as failure:
-        print("THERE WAS AN ERROR TRYING TO WRITE THE FILE:\n--> {} <--".format(failure))
+    if isinstance(data, list):
+        try:
+            os.chdir(path)
+            with open(filename, "w+") as output:
+                json.dump(data, output)
+        except Exception as failure:
+            print("THERE WAS AN ERROR TRYING TO WRITE THE FILE:\n--> {} <--".format(failure))
+    elif isinstance(data, str):
+        try:
+            os.chdir(path)
+            with open(filename, "w+") as output:
+                output.write(data)
+        except Exception as failure:
+            print("THERE WAS AN ERROR TRYING TO WRITE THE FILE:\n--> {} <--".format(failure))
 
 class Assessment:
 
@@ -34,6 +42,7 @@ class Assessment:
         for folder in folders:
             device_type_folder = os.path.join(self.project_folder, folder)
             os.makedirs(device_type_folder, exist_ok=True)
+            write("devices_data.json", device_type_folder, devices_data)
         for device in devices_data:
             for hostname, device_data in device.items():
                 directory = hostname

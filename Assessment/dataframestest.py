@@ -454,7 +454,7 @@ def dataframe(data):
                         "device_name": []
                     }
                     try:        
-                        for item in json.loads(output):
+                        for item in output:
                             result["device_name"].append(hostname)
                             for key, value in item.items():
                                 try:
