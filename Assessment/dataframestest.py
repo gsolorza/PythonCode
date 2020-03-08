@@ -91,7 +91,7 @@ for device in devices_data:
                         result[key] = []
                         result[key].append(value)
 
-                    
+
 df = pd.DataFrame(result)
 print(df)
 
