@@ -7,7 +7,7 @@ import json
 class ConnectManager:
 
     @staticmethod
-    def ssh(device_list, commands):
+    def ssh(device_list, commands, textfsm=False):
         commands_output = []
         for device in tqdm(device_list, ascii=True):
             try:
@@ -17,7 +17,7 @@ class ConnectManager:
             hostname = connection.base_prompt
             dcom = {hostname: []}
             for command in commands:
-                output_list = connection.send_command(command, use_textfsm=True)
+                output_list = connection.send_command(command, use_textfsm=textfsm)
                 cm = command.replace(" ", "_")
                 if isinstance(output_list, list):
                     # for output in output_list:

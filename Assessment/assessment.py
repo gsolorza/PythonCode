@@ -7,6 +7,7 @@ import sys
 from device_list import unpack_device_list
 from connect import ConnectManager as connect
 import pandas as pd
+from dataframestest import dataframe
 
 devices = unpack_device_list()
 
@@ -20,7 +21,7 @@ def write(filename, path, data):
 
 class Assessment:
 
-    ios_commands = ["show interfaces"]
+    ios_commands = ["show interfaces", "show interface status", "show version", "show run", "show log", "show process cpu", "show process memory sorted"]
 
     def __init__(self, customer_name):
         self.customer_name = customer_name
@@ -45,10 +46,10 @@ class Assessment:
 
 
 customer = Assessment("Salcobrand")
-devices_data = connect.ssh(devices, customer.ios_commands)
-pprint(devices_data)
+devices_data = connect.ssh(devices, customer.ios_commands, textfsm=True)
+# pprint(devices_data)
 customer.create_folder_structure(devices_data)
-
+dataframe(devices_data)
 
 
 
