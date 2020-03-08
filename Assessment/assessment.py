@@ -20,7 +20,7 @@ def write(filename, path, data):
 
 class Assessment:
 
-    ios_commands = ["show version", "show clock", "show interfaces", "show interface status", "show process cpu", "show process memory sorted"]
+    ios_commands = ["show interfaces"]
 
     def __init__(self, customer_name):
         self.customer_name = customer_name

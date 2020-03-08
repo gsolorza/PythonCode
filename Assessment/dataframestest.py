@@ -73,17 +73,7 @@ devices_data = [{'gnan02-3560sw-pr': [{'show_version': '{"version": "12.2(55)SE3
                                       '"CL", "dayweek": "Thu", "month": "Mar", '
                                       '"day": "5", "year": "2020"}'}]}]
 
-devices_data_1 = [{'CE-A': [{'show_version': '[{"version": "", "rommon": "Bootstrap", '
-                            '"hostname": "CE-A", "uptime": "1 day, 16 hours, '
-                            '24 minutes", "reload_reason": "Unknown reason", '
-                            '"running_image": '
-                            '"/opt/unetlab/addons/iol/bin/L2-ADVENTERPRISE-M-15.1-20140814.bin", '
-                            '"hardware": [], "serial": ["67111025"], '
-                            '"config_register": "0x0", "mac": []}]'},
-           {'show_clock': '[{"time": "08:31:13.350", "timezone": "EET", '
-                          '"dayweek": "Sun", "month": "Mar", "day": "8", '
-                          '"year": "2020"}]'},
-           {'show_interfaces': '[{"interface": "Ethernet0/0", "link_status": '
+devices_data_1 = [{'CE-A': [{'show_interfaces': '[{"interface": "Ethernet0/0", "link_status": '
                                '"up", "protocol_status": "up (connected)", '
                                '"hardware_type": "AmdP2", "address": '
                                '"aabb.cc00.7100", "bia": "aabb.cc00.7100", '
@@ -92,10 +82,10 @@ devices_data_1 = [{'CE-A': [{'show_version': '[{"version": "", "rommon": "Bootst
                                '"Auto-speed", "bandwidth": "10000 Kbit", '
                                '"delay": "1000 usec", "encapsulation": "ARPA", '
                                '"last_input": "never", "last_output": '
-                               '"00:00:01", "last_output_hang": "never", '
+                               '"00:00:00", "last_output_hang": "never", '
                                '"input_rate": "0", "output_rate": "0", '
                                '"input_packets": "0", "output_packets": '
-                               '"85065", "input_errors": "0", "output_errors": '
+                               '"85577", "input_errors": "0", "output_errors": '
                                '"0", "crc": "0"}, {"interface": "Ethernet0/1", '
                                '"link_status": "up", "protocol_status": "up '
                                '(connected)", "hardware_type": "Ethernet", '
@@ -107,9 +97,9 @@ devices_data_1 = [{'CE-A': [{'show_version': '[{"version": "", "rommon": "Bootst
                                '"delay": "1000 usec", "encapsulation": "ARPA", '
                                '"last_input": "00:00:00", "last_output": '
                                '"00:00:00", "last_output_hang": "never", '
-                               '"input_rate": "3000", "output_rate": "2000", '
-                               '"input_packets": "27395", "output_packets": '
-                               '"25040", "input_errors": "0", "output_errors": '
+                               '"input_rate": "2000", "output_rate": "1000", '
+                               '"input_packets": "27950", "output_packets": '
+                               '"25544", "input_errors": "0", "output_errors": '
                                '"0", "crc": "0"}, {"interface": "Ethernet0/2", '
                                '"link_status": "administratively down", '
                                '"protocol_status": "down (disabled)", '
@@ -150,37 +140,8 @@ devices_data_1 = [{'CE-A': [{'show_version': '[{"version": "", "rommon": "Bootst
                                '"never", "input_rate": "0", "output_rate": '
                                '"0", "input_packets": "0", "output_packets": '
                                '"0", "input_errors": "", "output_errors": "0", '
-                               '"crc": ""}]'},
-           {'show_interface_status': '[{"port": "Et0/0", "name": "", "status": '
-                                     '"connected", "vlan": "1", "duplex": '
-                                     '"auto", "speed": "auto", "type": '
-                                     '"unknown"}, {"port": "Et0/1", "name": '
-                                     '"", "status": "connected", "vlan": '
-                                     '"routed", "duplex": "auto", "speed": '
-                                     '"auto", "type": "unknown"}, {"port": '
-                                     '"Et0/2", "name": "", "status": '
-                                     '"disabled", "vlan": "1", "duplex": '
-                                     '"auto", "speed": "auto", "type": '
-                                     '"unknown"}, {"port": "Et0/3", "name": '
-                                     '"", "status": "disabled", "vlan": "1", '
-                                     '"duplex": "auto", "speed": "auto", '
-                                     '"type": "unknown"}]'},
-           {'show_process_cpu': '[{"cpu_5_sec": "0", "cpu_1_min": "0", '
-                                '"cpu_5_min": "0", "interrupts": "0"}]'},
-           {'show_process_memory_sorted': '[{"memory_total": "998641408", '
-                                          '"memory_used": "47464360", '
-                                          '"memory_free": "951177048"}]'}]},
- {'CE-B': [{'show_version': '[{"version": "", "rommon": "Bootstrap", '
-                            '"hostname": "CE-B", "uptime": "2 weeks, 3 days, '
-                            '11 hours, 30 minutes", "reload_reason": "Unknown '
-                            'reason", "running_image": '
-                            '"/opt/unetlab/addons/iol/bin/L2-ADVENTERPRISE-M-15.1-20140814.bin", '
-                            '"hardware": [], "serial": ["67111041"], '
-                            '"config_register": "0x0", "mac": []}]'},
-           {'show_clock': '[{"time": "08:31:21.822", "timezone": "EET", '
-                          '"dayweek": "Sun", "month": "Mar", "day": "8", '
-                          '"year": "2020"}]'},
-           {'show_interfaces': '[{"interface": "Ethernet0/0", "link_status": '
+                               '"crc": ""}]'}]},
+ {'CE-B': [{'show_interfaces': '[{"interface": "Ethernet0/0", "link_status": '
                                '"up", "protocol_status": "up (connected)", '
                                '"hardware_type": "Ethernet", "address": '
                                '"aabb.cc00.8100", "bia": "aabb.cc00.8100", '
@@ -191,9 +152,9 @@ devices_data_1 = [{'CE-A': [{'show_version': '[{"version": "", "rommon": "Bootst
                                'usec", "encapsulation": "ARPA", "last_input": '
                                '"00:00:00", "last_output": "00:00:00", '
                                '"last_output_hang": "never", "input_rate": '
-                               '"2000", "output_rate": "2000", '
-                               '"input_packets": "8705", "output_packets": '
-                               '"41894", "input_errors": "0", "output_errors": '
+                               '"1000", "output_rate": "1000", '
+                               '"input_packets": "9156", "output_packets": '
+                               '"42394", "input_errors": "0", "output_errors": '
                                '"0", "crc": "0"}, {"interface": "Ethernet0/1", '
                                '"link_status": "up", "protocol_status": "up '
                                '(connected)", "hardware_type": "AmdP2", '
@@ -206,7 +167,7 @@ devices_data_1 = [{'CE-A': [{'show_version': '[{"version": "", "rommon": "Bootst
                                '"never", "last_output": "00:00:00", '
                                '"last_output_hang": "never", "input_rate": '
                                '"0", "output_rate": "0", "input_packets": "0", '
-                               '"output_packets": "883143", "input_errors": '
+                               '"output_packets": "883652", "input_errors": '
                                '"0", "output_errors": "0", "crc": "0"}, '
                                '{"interface": "Ethernet0/2", "link_status": '
                                '"administratively down", "protocol_status": '
@@ -248,26 +209,8 @@ devices_data_1 = [{'CE-A': [{'show_version': '[{"version": "", "rommon": "Bootst
                                '"never", "input_rate": "0", "output_rate": '
                                '"0", "input_packets": "0", "output_packets": '
                                '"0", "input_errors": "", "output_errors": "0", '
-                               '"crc": ""}]'},
-           {'show_interface_status': '[{"port": "Et0/0", "name": "", "status": '
-                                     '"connected", "vlan": "routed", "duplex": '
-                                     '"auto", "speed": "auto", "type": '
-                                     '"unknown"}, {"port": "Et0/1", "name": '
-                                     '"", "status": "connected", "vlan": "1", '
-                                     '"duplex": "auto", "speed": "auto", '
-                                     '"type": "unknown"}, {"port": "Et0/2", '
-                                     '"name": "", "status": "disabled", '
-                                     '"vlan": "1", "duplex": "auto", "speed": '
-                                     '"auto", "type": "unknown"}, {"port": '
-                                     '"Et0/3", "name": "", "status": '
-                                     '"disabled", "vlan": "1", "duplex": '
-                                     '"auto", "speed": "auto", "type": '
-                                     '"unknown"}]'},
-           {'show_process_cpu': '[{"cpu_5_sec": "0", "cpu_1_min": "0", '
-                                '"cpu_5_min": "0", "interrupts": "0"}]'},
-           {'show_process_memory_sorted': '[{"memory_total": "998641408", '
-                                          '"memory_used": "52181088", '
-                                          '"memory_free": "946460320"}]'}]}]
+                               '"crc": ""}]'}]}]
+
 
 
 result = {
@@ -277,18 +220,19 @@ result = {
 
 for device in devices_data_1:
     for hostname, device_data in device.items():
-        result["device_name"].append(hostname)
         for data in device_data:
             for command, output in data.items():
-                for out in output:
-                    print(out)
-                        # try:
-                        #     result[key].append(value)
-                        # except KeyError:
-                        #     result[key] = []
-                        #     result[key].append(value)
+                for item in json.loads(output):
+                    for key, value in item.items():
+                        try:
+                            result["device_name"].append(hostname)
+                            result[key].append(value)
+                        except KeyError:
+                            result[key] = []
+                            result[key].append(value)
+                            result["device_name"].append(hostname)
 
-                    
-# df = pd.DataFrame(result)
-# print(df)
+pprint(result)         
+df = pd.DataFrame(result)
+print(df)
 
