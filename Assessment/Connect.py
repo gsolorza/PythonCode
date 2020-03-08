@@ -1,15 +1,26 @@
 #!/usr/bin/env python3
 
 from netmiko import ConnectHandler
-import sys
+from tqdm import tqdm
 
-class Connect_Manager():
+class ConnectManager:
 
     @staticmethod
-    def connect(**device):
-        try:
-            return ConnectHandler(**device)
-        except Exception as failure:
-            print("THERE WAS AN ERROR TRYING TO CONNECT TO THE DEVICE:\n--> {} <--".format(failure))
+    def ssh(device_list, commands):
+        commands_output = []
+        for device in tqdm(device_list, ascii=True):
+            try:
+                connection = ConnectHandler(**device)
+            except Exception as failure:
+                print("THERE WAS AN ERROR TRYING TO CONNECT TO THE DEVICE:\n--> {} <--".format(failure))
+            hostname = connection.base_prompt
+            dcom = {hostname: []}
+            for command in commands:
+                list_output = connection.send_command(command, use_textfsm=True)
+                cm = command.replace(" ", "_")
+                dcom[hostname].append({cm: list_output[0]})
+            commands_output.append(dcom)
+                
+        return commands_output
 
 
