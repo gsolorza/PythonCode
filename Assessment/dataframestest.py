@@ -444,29 +444,7 @@ devices_data_1 = [{'CE-A': [{'show_interfaces': '[{"interface": "Ethernet0/0", "
                         '!\n'
                         'end\n'}]}]
 
-<<<<<<< HEAD
-result = {
-    "device_name": []
-}
 
-
-for device in devices_data:
-    for hostname, device_data in device.items():
-        result["device_name"].append(hostname)
-        for data in device_data:
-            for command, output in data.items():
-                for key, value in json.loads(output).items():
-                    try:
-                        result[key].append(value)
-                    except KeyError:
-                        result[key] = []
-                        result[key].append(value)
-
-
-df = pd.DataFrame(result)
-print(df)
-
-=======
 def dataframe(data):
     for device in data:
         for hostname, device_data in device.items():
@@ -488,4 +466,3 @@ def dataframe(data):
                         print(df)
                     except:
                         continue
->>>>>>> testing
