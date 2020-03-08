@@ -73,25 +73,222 @@ devices_data = [{'gnan02-3560sw-pr': [{'show_version': '{"version": "12.2(55)SE3
                                       '"CL", "dayweek": "Thu", "month": "Mar", '
                                       '"day": "5", "year": "2020"}'}]}]
 
+devices_data_1 = [{'CE-A': [{'show_version': '[{"version": "", "rommon": "Bootstrap", '
+                            '"hostname": "CE-A", "uptime": "1 day, 16 hours, '
+                            '24 minutes", "reload_reason": "Unknown reason", '
+                            '"running_image": '
+                            '"/opt/unetlab/addons/iol/bin/L2-ADVENTERPRISE-M-15.1-20140814.bin", '
+                            '"hardware": [], "serial": ["67111025"], '
+                            '"config_register": "0x0", "mac": []}]'},
+           {'show_clock': '[{"time": "08:31:13.350", "timezone": "EET", '
+                          '"dayweek": "Sun", "month": "Mar", "day": "8", '
+                          '"year": "2020"}]'},
+           {'show_interfaces': '[{"interface": "Ethernet0/0", "link_status": '
+                               '"up", "protocol_status": "up (connected)", '
+                               '"hardware_type": "AmdP2", "address": '
+                               '"aabb.cc00.7100", "bia": "aabb.cc00.7100", '
+                               '"description": "", "ip_address": "", "mtu": '
+                               '"1500", "duplex": "Auto-duplex", "speed": '
+                               '"Auto-speed", "bandwidth": "10000 Kbit", '
+                               '"delay": "1000 usec", "encapsulation": "ARPA", '
+                               '"last_input": "never", "last_output": '
+                               '"00:00:01", "last_output_hang": "never", '
+                               '"input_rate": "0", "output_rate": "0", '
+                               '"input_packets": "0", "output_packets": '
+                               '"85065", "input_errors": "0", "output_errors": '
+                               '"0", "crc": "0"}, {"interface": "Ethernet0/1", '
+                               '"link_status": "up", "protocol_status": "up '
+                               '(connected)", "hardware_type": "Ethernet", '
+                               '"address": "aabb.cc00.7110", "bia": '
+                               '"aabb.cc00.7110", "description": "", '
+                               '"ip_address": "10.2.10.10/24", "mtu": "1500", '
+                               '"duplex": "Auto-duplex", "speed": '
+                               '"Auto-speed", "bandwidth": "10000 Kbit", '
+                               '"delay": "1000 usec", "encapsulation": "ARPA", '
+                               '"last_input": "00:00:00", "last_output": '
+                               '"00:00:00", "last_output_hang": "never", '
+                               '"input_rate": "3000", "output_rate": "2000", '
+                               '"input_packets": "27395", "output_packets": '
+                               '"25040", "input_errors": "0", "output_errors": '
+                               '"0", "crc": "0"}, {"interface": "Ethernet0/2", '
+                               '"link_status": "administratively down", '
+                               '"protocol_status": "down (disabled)", '
+                               '"hardware_type": "AmdP2", "address": '
+                               '"aabb.cc00.7120", "bia": "aabb.cc00.7120", '
+                               '"description": "", "ip_address": "", "mtu": '
+                               '"1500", "duplex": "Auto-duplex", "speed": '
+                               '"Auto-speed", "bandwidth": "10000 Kbit", '
+                               '"delay": "1000 usec", "encapsulation": "ARPA", '
+                               '"last_input": "never", "last_output": "1d16h", '
+                               '"last_output_hang": "never", "input_rate": '
+                               '"0", "output_rate": "0", "input_packets": "0", '
+                               '"output_packets": "2", "input_errors": "0", '
+                               '"output_errors": "0", "crc": "0"}, '
+                               '{"interface": "Ethernet0/3", "link_status": '
+                               '"administratively down", "protocol_status": '
+                               '"down (disabled)", "hardware_type": "AmdP2", '
+                               '"address": "aabb.cc00.7130", "bia": '
+                               '"aabb.cc00.7130", "description": "", '
+                               '"ip_address": "", "mtu": "1500", "duplex": '
+                               '"Auto-duplex", "speed": "Auto-speed", '
+                               '"bandwidth": "10000 Kbit", "delay": "1000 '
+                               'usec", "encapsulation": "ARPA", "last_input": '
+                               '"never", "last_output": "1d16h", '
+                               '"last_output_hang": "never", "input_rate": '
+                               '"0", "output_rate": "0", "input_packets": "0", '
+                               '"output_packets": "2", "input_errors": "0", '
+                               '"output_errors": "0", "crc": "0"}, '
+                               '{"interface": "Loopback0", "link_status": '
+                               '"up", "protocol_status": "up", '
+                               '"hardware_type": "Loopback", "address": "", '
+                               '"bia": "", "description": "", "ip_address": '
+                               '"10.10.10.10/32", "mtu": "1514", "duplex": "", '
+                               '"speed": "", "bandwidth": "8000000 Kbit", '
+                               '"delay": "5000 usec", "encapsulation": '
+                               '"LOOPBACK", "last_input": "never", '
+                               '"last_output": "never", "last_output_hang": '
+                               '"never", "input_rate": "0", "output_rate": '
+                               '"0", "input_packets": "0", "output_packets": '
+                               '"0", "input_errors": "", "output_errors": "0", '
+                               '"crc": ""}]'},
+           {'show_interface_status': '[{"port": "Et0/0", "name": "", "status": '
+                                     '"connected", "vlan": "1", "duplex": '
+                                     '"auto", "speed": "auto", "type": '
+                                     '"unknown"}, {"port": "Et0/1", "name": '
+                                     '"", "status": "connected", "vlan": '
+                                     '"routed", "duplex": "auto", "speed": '
+                                     '"auto", "type": "unknown"}, {"port": '
+                                     '"Et0/2", "name": "", "status": '
+                                     '"disabled", "vlan": "1", "duplex": '
+                                     '"auto", "speed": "auto", "type": '
+                                     '"unknown"}, {"port": "Et0/3", "name": '
+                                     '"", "status": "disabled", "vlan": "1", '
+                                     '"duplex": "auto", "speed": "auto", '
+                                     '"type": "unknown"}]'},
+           {'show_process_cpu': '[{"cpu_5_sec": "0", "cpu_1_min": "0", '
+                                '"cpu_5_min": "0", "interrupts": "0"}]'},
+           {'show_process_memory_sorted': '[{"memory_total": "998641408", '
+                                          '"memory_used": "47464360", '
+                                          '"memory_free": "951177048"}]'}]},
+ {'CE-B': [{'show_version': '[{"version": "", "rommon": "Bootstrap", '
+                            '"hostname": "CE-B", "uptime": "2 weeks, 3 days, '
+                            '11 hours, 30 minutes", "reload_reason": "Unknown '
+                            'reason", "running_image": '
+                            '"/opt/unetlab/addons/iol/bin/L2-ADVENTERPRISE-M-15.1-20140814.bin", '
+                            '"hardware": [], "serial": ["67111041"], '
+                            '"config_register": "0x0", "mac": []}]'},
+           {'show_clock': '[{"time": "08:31:21.822", "timezone": "EET", '
+                          '"dayweek": "Sun", "month": "Mar", "day": "8", '
+                          '"year": "2020"}]'},
+           {'show_interfaces': '[{"interface": "Ethernet0/0", "link_status": '
+                               '"up", "protocol_status": "up (connected)", '
+                               '"hardware_type": "Ethernet", "address": '
+                               '"aabb.cc00.8100", "bia": "aabb.cc00.8100", '
+                               '"description": "", "ip_address": '
+                               '"10.5.20.20/24", "mtu": "1500", "duplex": '
+                               '"Auto-duplex", "speed": "Auto-speed", '
+                               '"bandwidth": "10000 Kbit", "delay": "1000 '
+                               'usec", "encapsulation": "ARPA", "last_input": '
+                               '"00:00:00", "last_output": "00:00:00", '
+                               '"last_output_hang": "never", "input_rate": '
+                               '"2000", "output_rate": "2000", '
+                               '"input_packets": "8705", "output_packets": '
+                               '"41894", "input_errors": "0", "output_errors": '
+                               '"0", "crc": "0"}, {"interface": "Ethernet0/1", '
+                               '"link_status": "up", "protocol_status": "up '
+                               '(connected)", "hardware_type": "AmdP2", '
+                               '"address": "aabb.cc00.8110", "bia": '
+                               '"aabb.cc00.8110", "description": "", '
+                               '"ip_address": "", "mtu": "1500", "duplex": '
+                               '"Auto-duplex", "speed": "Auto-speed", '
+                               '"bandwidth": "10000 Kbit", "delay": "1000 '
+                               'usec", "encapsulation": "ARPA", "last_input": '
+                               '"never", "last_output": "00:00:00", '
+                               '"last_output_hang": "never", "input_rate": '
+                               '"0", "output_rate": "0", "input_packets": "0", '
+                               '"output_packets": "883143", "input_errors": '
+                               '"0", "output_errors": "0", "crc": "0"}, '
+                               '{"interface": "Ethernet0/2", "link_status": '
+                               '"administratively down", "protocol_status": '
+                               '"down (disabled)", "hardware_type": "AmdP2", '
+                               '"address": "aabb.cc00.8120", "bia": '
+                               '"aabb.cc00.8120", "description": "", '
+                               '"ip_address": "", "mtu": "1500", "duplex": '
+                               '"Auto-duplex", "speed": "Auto-speed", '
+                               '"bandwidth": "10000 Kbit", "delay": "1000 '
+                               'usec", "encapsulation": "ARPA", "last_input": '
+                               '"never", "last_output": "2w3d", '
+                               '"last_output_hang": "never", "input_rate": '
+                               '"0", "output_rate": "0", "input_packets": "0", '
+                               '"output_packets": "2", "input_errors": "0", '
+                               '"output_errors": "0", "crc": "0"}, '
+                               '{"interface": "Ethernet0/3", "link_status": '
+                               '"administratively down", "protocol_status": '
+                               '"down (disabled)", "hardware_type": "AmdP2", '
+                               '"address": "aabb.cc00.8130", "bia": '
+                               '"aabb.cc00.8130", "description": "", '
+                               '"ip_address": "", "mtu": "1500", "duplex": '
+                               '"Auto-duplex", "speed": "Auto-speed", '
+                               '"bandwidth": "10000 Kbit", "delay": "1000 '
+                               'usec", "encapsulation": "ARPA", "last_input": '
+                               '"never", "last_output": "2w3d", '
+                               '"last_output_hang": "never", "input_rate": '
+                               '"0", "output_rate": "0", "input_packets": "0", '
+                               '"output_packets": "2", "input_errors": "0", '
+                               '"output_errors": "0", "crc": "0"}, '
+                               '{"interface": "Loopback0", "link_status": '
+                               '"up", "protocol_status": "up", '
+                               '"hardware_type": "Loopback", "address": "", '
+                               '"bia": "", "description": "", "ip_address": '
+                               '"20.20.20.20/32", "mtu": "1514", "duplex": "", '
+                               '"speed": "", "bandwidth": "8000000 Kbit", '
+                               '"delay": "5000 usec", "encapsulation": '
+                               '"LOOPBACK", "last_input": "never", '
+                               '"last_output": "never", "last_output_hang": '
+                               '"never", "input_rate": "0", "output_rate": '
+                               '"0", "input_packets": "0", "output_packets": '
+                               '"0", "input_errors": "", "output_errors": "0", '
+                               '"crc": ""}]'},
+           {'show_interface_status': '[{"port": "Et0/0", "name": "", "status": '
+                                     '"connected", "vlan": "routed", "duplex": '
+                                     '"auto", "speed": "auto", "type": '
+                                     '"unknown"}, {"port": "Et0/1", "name": '
+                                     '"", "status": "connected", "vlan": "1", '
+                                     '"duplex": "auto", "speed": "auto", '
+                                     '"type": "unknown"}, {"port": "Et0/2", '
+                                     '"name": "", "status": "disabled", '
+                                     '"vlan": "1", "duplex": "auto", "speed": '
+                                     '"auto", "type": "unknown"}, {"port": '
+                                     '"Et0/3", "name": "", "status": '
+                                     '"disabled", "vlan": "1", "duplex": '
+                                     '"auto", "speed": "auto", "type": '
+                                     '"unknown"}]'},
+           {'show_process_cpu': '[{"cpu_5_sec": "0", "cpu_1_min": "0", '
+                                '"cpu_5_min": "0", "interrupts": "0"}]'},
+           {'show_process_memory_sorted': '[{"memory_total": "998641408", '
+                                          '"memory_used": "52181088", '
+                                          '"memory_free": "946460320"}]'}]}]
+
 
 result = {
     "device_name": []
 }
 
 
-for device in devices_data:
+for device in devices_data_1:
     for hostname, device_data in device.items():
         result["device_name"].append(hostname)
         for data in device_data:
             for command, output in data.items():
-                for key, value in json.loads(output).items():
-                    try:
-                        result[key].append(value)
-                    except KeyError:
-                        result[key] = []
-                        result[key].append(value)
+                for out in output:
+                    print(out)
+                        # try:
+                        #     result[key].append(value)
+                        # except KeyError:
+                        #     result[key] = []
+                        #     result[key].append(value)
 
                     
-df = pd.DataFrame(result)
-print(df)
+# df = pd.DataFrame(result)
+# print(df)
 
