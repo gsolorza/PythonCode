@@ -17,6 +17,8 @@ def dataframe(data):
                         for item in output:
                             for key, value in item.items():
                                 try:
+                                    df[key].append(int(value))
+                                except ValueError:
                                     df[key].append(value)
                                 except KeyError:
                                     df[key] = []
