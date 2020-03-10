@@ -3,15 +3,7 @@
 import pandas as pd
 import json
 from pprint import pprint
-
-def send_to_excel(dataframes):
-    for hostname in dataframes.keys():
-        writer = pd.ExcelWriter(hostname+".xlsx", engine="xlsxwriter")
-        for data in dataframes[hostname]:
-            for command, dataframe in data.items():
-                df = pd.DataFrame(dataframe)
-                df.to_excel(writer, command)
-        writer.save()
+import os
 
 def dataframe(data):
     dataframes = {}

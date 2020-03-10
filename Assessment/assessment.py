@@ -6,7 +6,7 @@ import os
 import sys
 from device_list import unpack_device_list
 from connect import ConnectManager as connect
-from dataframestest import dataframe, send_to_excel
+from dataframestest import dataframe
 import pandas as pd
 
 devices = unpack_device_list()
@@ -36,6 +36,22 @@ class Assessment:
         self.project_folder = os.path.join(os.getcwd(), self.customer_name)
         os.makedirs(self.project_folder, exist_ok=True)
 
+    def find_correct_folder(self, folder_name):
+        for subdir, dirs, files in os.walk(self.project_folder):
+            for direct in dirs:
+                if direct == folder_name:
+                    return os.path.join(subdir, direct)
+
+    def write_to_excel(self, dataframes):
+        for hostname in dataframes.keys():
+            os.chdir(self.find_correct_folder(hostname))
+            writer = pd.ExcelWriter(hostname+".xlsx", engine="xlsxwriter")
+            for data in dataframes[hostname]:
+                for command, dataframe in data.items():
+                    df = pd.DataFrame(dataframe)
+                    df.to_excel(writer, command)
+            writer.save()
+    
     def create_folder_structure(self, devices_data):
         folders = set([dev["device_type"] for dev in devices])
 
@@ -58,7 +74,7 @@ devices_data = connect.ssh(devices, customer.ios_commands, textfsm=True)
 # pprint(devices_data)
 customer.create_folder_structure(devices_data)
 dataframes = dataframe(devices_data)
-send_to_excel(dataframes)
+customer.write_to_excel(dataframes)
 
 
 
