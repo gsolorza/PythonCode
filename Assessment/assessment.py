@@ -71,7 +71,6 @@ class Assessment:
 
 customer = Assessment("Salcobrand")
 devices_data = connect.ssh(devices, customer.ios_commands, textfsm=True)
-# pprint(devices_data)
 customer.create_folder_structure(devices_data)
 dataframes = dataframe(devices_data)
 customer.write_to_excel(dataframes)
