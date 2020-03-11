@@ -7,14 +7,6 @@ from paramiko.ssh_exception import SSHException
 from netmiko.ssh_exception import NetMikoAuthenticationException
 from paramiko.ssh_exception import AuthenticationException
 
-def send_all_commands(hostname, commands, connection):
-    dcom = {hostname: []}
-    for command in commands:
-        output_list = connection.send_command(command, use_textfsm=textfsm)
-        cm = command.replace(" ", "_")
-        dcom[hostname].append({cm: output_list})
-    return dcom
-
 class ConnectManager:
 
     @staticmethod
