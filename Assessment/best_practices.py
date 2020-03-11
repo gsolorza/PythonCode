@@ -109,6 +109,7 @@ matches = []
 for bp in bp_list["Categorias"]:
     for categoria, bp_attributes in bp.items():
         for key, value in bp_attributes.items():
+
             if key == "regex":
                 for description, reg in value.items():
                     pattern = re.compile(reg, re.M|re.I)
