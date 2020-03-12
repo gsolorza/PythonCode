@@ -1,27 +1,25 @@
 import re
+from pprint import pprint
+import pandas as pd
 
-show_run = "Building configuration...\n\nCurrent configuration : 1106 bytes\n!\nversion 15.1\nservice timestamps debug datetime msec\nservice timestamps log datetime msec\nno service password-encryption\nservice compress-config\n!\nhostname CE-A\n!\nboot-start-marker\nboot-end-marker\n!\n!\n!\nusername cisco privilege 15 secret 5 $1$t00T$Y/5i3OevQWcXx0j/shIZE1\nno aaa new-model\nclock timezone EET 2 0\n!\nip cef\n!\n!\nno ip domain-lookup\nip domain-name cisco.com\nno ipv6 cef\nipv6 multicast rpf use-bgp\n!\n!\n!\n!\n!\n!\n!\nspanning-tree mode pvst\nspanning-tree extend system-id\n!\n!\n!\n!\nvlan internal allocation policy ascending\n!\n! \n!\n!\n!\n!\n!\n!\n!\n!\ninterface Loopback0\n ip address 10.10.10.10 255.255.255.255\n ip ospf network point-to-point\n!\ninterface Ethernet0/0\n duplex auto\n!\ninterface Ethernet0/1\n no switchport\n ip address 10.2.10.10 255.255.255.0\n duplex auto\n!\ninterface Ethernet0/2\n shutdown\n duplex auto\n!\ninterface Ethernet0/3\n shutdown\n duplex auto\n!\n!\nno ip http server\n!\nip route 0.0.0.0 0.0.0.0 10.2.10.2\nip route 10.6.20.0 255.255.255.0 10.1.10.1\n!\n!\n!\n!\ncontrol-plane\n!\n!\nline con 0\n privilege level 15\n logging synchronous\nline aux 0\nline vty 0 4\n login local\n transport input ssh\n!\nend\n"
-
-bp_list = {
-    "Categorias": [
-        {"Banners":
+bp_list = {"Banners":
             {
-                "descripcion": "Banner Best Practices",
                 "impacto": "bajo",
                 "plazo": "corto",
+                "should_match": True,
                 "regex": 
                 {
-                    "Banner Message of the day (MOTD)": r"banner\smotd.*",
-                    "Banner Login": r"banner\slogin.*",
-                    "Banner Exec": r"banner\sexec.*"
+                    "Banner Message of the day (MOTD)": r"banner\smotd",
+                    "Banner Login": r"banner\slogin",
+                    "Banner Exec": r"banner\sexec"
                 }
             
             },
         "Authentication, Authorization and Accouting":
             {
-                "description": "AAA Best Practices",
                 "impacto": "medio",
                 "plazo": "corto",
+                "should_match": True,
                 "regex": 
             
                 {
@@ -36,9 +34,9 @@ bp_list = {
             },
         "Line VTY":
             {
-                "descripcion": "Line VTY Best Practices",
                 "impacto": "low",
                 "plazo": "medio",
+                "should_match": True,
                 "regex":
                 {
                     "SSH Only Access": r"\stransport input ssh$|\stransport input ssh\s$",
@@ -50,9 +48,9 @@ bp_list = {
             },
         "Logging":  
             {
-                "description": "Logging Best Practices",
                 "impacto": "low",
                 "plazo": "medio",
+                "should_match": True,
                 "regex": 
                 {
                     "Centralized Logging": r"logging host.*",
@@ -62,7 +60,6 @@ bp_list = {
             },
         "Simple Network Management Protocol (SNMP)": 
             {
-                "description": "SNMP Best Practices",
                 "impacto": "low",
                 "plazo": "medio",
                 "regex":
@@ -72,51 +69,91 @@ bp_list = {
                 }  
             },
         "Network Time Protocol (NTP)": 
-            {
-                "description": "Time and NTP Best Practices",            
+            {           
                 "impacto": "low",
                 "plazo": "medio",
+                "should_match": True,
                 "regex":  
                 {
                     "Timezone Configured": r"clock timezone\s.*",
-                    "NTP server Configured": r"ntp server \d+\.\d+\.\d+\.\d+(\s\w+|$|\s$)$"
+                    "NTP server Configured": r"ntp\sserver\s[\d.]+.*"
                 }  
             },
         "Comandos que deben ser evitados":
             {
-                "description": "Commands that should be avoided",
                 "impacto": "low",
                 "plazo": "medio",
+                "should_match": False,
                 "regex":
             
                 {
-                    "Password 7 in Line VTY": r"^\spassword\s\d\s\w*$",
+                    "Password 7 in Line VTY": r"\spassword\s7\s\w+",
                     "Password 7 or 0 for Username": r"username\s.*password\s.*",
-                    "http/https Enabled": r"^ip http server",
+                    "http Enabled": r"^ip http server",
                     "Enable Password": r"^enable password\s\w+$",
                     "Generic user names created": r"^username\scisco|username\sadmin"
                 }  
             }
-        }
-    ]
 }
 
+# for categoria, bp_attributes in bp_list.items():
+#     for key, value in bp_attributes.items():
+#         if key == "regex":
+#             for description, reg in value.items():
+#                 pattern = re.compile(reg, re.M|re.I)
+#                 matches = pattern.findall(show_run)
+#                 if not matches:
+#                     df["Clasificacion"].append(categoria)
+#                     df["Descripcion"].append(description)
+#                     df["Impacto"].append(bp_list[categoria]["impacto"])
+#                     df["Workarround"].append("Es recomendado configurar "+description+" en todos los equipos")
+#                     df["Evidencia"].append(" ")
+#                 else:
+#                     pass
+                    # df["Clasificacion"].append(categoria)
+                    # df["Descripcion"].append(description)
+                    # df["Impacto"].append(bp_list[categoria]["impacto"])
+                    # df["Evidencia"].append(matches[0])
 
 
+# dataframe = pd.DataFrame(df)
+# print(dataframe)
 
-matches = []
+# pattern = re.compile(r"banner\slogin", re.M|re.I)
+# matches = pattern.findall(show_run)
 
-for bp in bp_list["Categorias"]:
-    for categoria, bp_attributes in bp.items():
-        for key, value in bp_attributes.items():
+# print(matches)
 
-            if key == "regex":
-                for description, reg in value.items():
-                    pattern = re.compile(reg, re.M|re.I)
-                    matches = pattern.finditer(show_run)
-                    for match in matches:
-                        print(match.group(0))
+# bp_test = {
+#     "Banners":
+#             {
+#             "Banner Message of the day (MOTD)": [r"banner\smotd", True, "bajo", "corto"],
+#             "Banner Login": [r"banner\slogin",True, "bajo", "corto"],
+#             "Banner Exec": [r"banner\sexec",True, "bajo", "corto"]
+#             }
+# }
 
+bp_test = {
+    "Banners":
+            [
+            ("Banner Message of the day (MOTD)", r"banner\smotd", True, "bajo", "corto"),
+            ("Banner Login", r"banner\slogin" ,True, "bajo", "corto"),
+            ("Banner Exec", r"banner\sexec",True, "bajo", "corto")
+            ]      
+}
 
+with open("/Users/georgesolorzano/Google Drive/PythonCode/Assessment/Salcobrand/cisco_ios/RTR_ANGAMOS01/show_run.log") as file:
+    show_run = file.read()
 
+df = {
+    "Clasificacion": [],
+    "Descripcion": [],
+    "Impacto": [],
+    "Workarround": [],
+    "Evidencia": []
+}
 
+for clasificacion in bp_test.keys():
+    print(clasificacion)
+    for bp, regex, should_match, impact, deadline in bp_test[clasificacion]:
+        print(bp)

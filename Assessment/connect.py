@@ -42,7 +42,7 @@ class ConnectManager:
                     connection = ConnectHandler(**telnet_device)
 
                 except Exception:
-                    print("THERE WAS AN ERROR WITH THE DEVICE:\n--> {} <-- and the error was {}".format(device.host, failure))
+                    print("THERE WAS AN ERROR WITH THE DEVICE:\n--> {} <-- and the error was {}".format(device["host"], failure))
                     continue
 
                 finally:
@@ -55,12 +55,12 @@ class ConnectManager:
                             dcom[hostname].append({cm: output_list})
                         commands_output.append(dcom)
                     except Exception as failure:
-                        print("THERE WAS AN ERROR TRYING TO CONNECT TO THE DEVICE:\n--> {} <-- and the error was {}".format(device.host, failure))
+                        print("THERE WAS AN ERROR TRYING TO CONNECT TO THE DEVICE:\n--> {} <-- and the error was {}".format(device["host"], failure))
                         continue
 
 
             except Exception as failure:
-                print("THERE WAS AN ERROR TRYING TO CONNECT TO THE DEVICE:\n--> {} <-- and the error was {}".format(device.host, failure))
+                print("THERE WAS AN ERROR TRYING TO CONNECT TO THE DEVICE:\n--> {} <-- and the error was {}".format(device["host"], failure))
                 continue
             
             finally:
