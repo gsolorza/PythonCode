@@ -56,7 +56,6 @@ class ConnectManager:
                         commands_output.append(dcom)
                     except Exception as failure:
                         print("THERE WAS AN ERROR TRYING TO CONNECT TO THE DEVICE:\n--> {} <-- and the error was {}".format(device["host"], failure))
-                        continue
 
 
             except Exception as failure:
@@ -73,7 +72,7 @@ class ConnectManager:
                         dcom[hostname].append({cm: output_list})
                     commands_output.append(dcom)
                 except Exception as failure:
-                    print("THERE WAS AN ERROR TRYING TO CONNECT TO THE DEVICE:\n--> {} <-- and the error was {}".format(device.host, failure))
+                    print("THERE WAS AN ERROR TRYING TO CONNECT TO THE DEVICE:\n--> {} <-- and the error was {}".format(device["host"], failure))
 
         return commands_output
 
