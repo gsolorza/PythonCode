@@ -13,12 +13,13 @@ class ConnectManager:
     def ssh(device_list, commands, textfsm=False):
         commands_output = []
         for device in tqdm(device_list, ascii=True):
+            print(device["host"])
             try:
                 connection = ConnectHandler(**device)
 
             except AuthenticationException:
-                device["username"] = "ibustamante"
-                device["password"] = "Salco.2020"
+                device["username"] = "salcobrand"
+                device["password"] = "s1lc4br1nd"
                 connection = ConnectHandler(**device)
 
             except SSHException:
@@ -30,49 +31,60 @@ class ConnectManager:
                     connection = ConnectHandler(**telnet_device)
 
                 except ConnectionResetError:
-                    print("TELNET PASSWORD ERROR")
-                    telnet_device["username"] = "ibustamante"
-                    telnet_device["password"] = "Salco.2020"
+                    print("TELNET PASSWORD ERROR RESET")
+                    telnet_device["username"] = "salcobrand"
+                    telnet_device["password"] = "s1lc4br1nd"
                     connection = ConnectHandler(**telnet_device)
 
                 except NetMikoAuthenticationException:
                     print("TELNET PASSWORD ERROR")
-                    telnet_device["username"] = "ibustamante"
-                    telnet_device["password"] = "Salco.2020"
+                    telnet_device["username"] = "salcobrand"
+                    telnet_device["password"] = "s1lc4br1nd"
                     connection = ConnectHandler(**telnet_device)
 
-                except Exception:
-                    print("THERE WAS AN ERROR WITH THE DEVICE:\n--> {} <-- and the error was {}".format(device["host"], failure))
+                except Exception as failure:
+                    print("THERE IS AN ERROR WITH THE DEVICE:\n--> {} <-- and the error was {}".format(device["host"], failure))
                     continue
 
                 finally:
                     try:
+                        connection.write_channel("enable\n")
+                        connection.write_channel("Red3s#63_1")
                         hostname = connection.base_prompt
+                        print(hostname)
                         dcom = {hostname: []}
                         for command in commands:
                             output_list = connection.send_command(command, use_textfsm=textfsm)
                             cm = command.replace(" ", "_")
                             dcom[hostname].append({cm: output_list})
                         commands_output.append(dcom)
+                        connection.disconnect()
                     except Exception as failure:
-                        print("THERE WAS AN ERROR TRYING TO CONNECT TO THE DEVICE:\n--> {} <-- and the error was {}".format(device["host"], failure))
+                        print("THERE IS AN ERROR TRYING TO CONNECT TO THE DEVICE:\n--> {} <-- and the error was {}".format(device["host"], failure))
+                        continue
 
 
             except Exception as failure:
-                print("THERE WAS AN ERROR TRYING TO CONNECT TO THE DEVICE:\n--> {} <-- and the error was {}".format(device["host"], failure))
+                print("THERE IS AN ERROR TRYING TO CONNECT TO THE DEVICE:\n--> {} <-- and the error was {}".format(device["host"], failure))
                 continue
             
             finally:
                 try:
+                    connection.write_channel("enable\n")
+                    connection.write_channel("Red3s#63_1")
                     hostname = connection.base_prompt
+                    print(hostname)
                     dcom = {hostname: []}
                     for command in commands:
                         output_list = connection.send_command(command, use_textfsm=textfsm)
                         cm = command.replace(" ", "_")
                         dcom[hostname].append({cm: output_list})
                     commands_output.append(dcom)
+                    connection.disconnect()
                 except Exception as failure:
-                    print("THERE WAS AN ERROR TRYING TO CONNECT TO THE DEVICE:\n--> {} <-- and the error was {}".format(device["host"], failure))
+                    print("THERE IS AN ERROR TRYING TO CONNECT TO THE DEVICE:\n--> {} <-- and the error was {}".format(device["host"], failure))
+                    continue
+                    
 
         return commands_output
 

@@ -18,10 +18,11 @@ def connect(device_list):
     for device in tqdm(device_list, ascii=True):
         try:
             connection = ConnectHandler(**device)       
-        except:
-            print("SOMETHING WENT WRONG CONNECTING TO HOST "+device["host"]+" VIA SSH")
+        except Exception as failure:
+            print("SOMETHING WENT WRONG CONNECTING TO HOST "+device["host"]+" VIA SSH\nERROR --> "+failure)
+            continue
         print(connection.host)
-        get_interface_status(connection)
+        print(connection.send_command("show users"))
 
 if __name__ == "__main__":
     connect(device_list)
