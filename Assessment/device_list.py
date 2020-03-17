@@ -3,7 +3,7 @@
 import csv
 
 def unpack_device_list():
-    with open("salcobrand_test.csv") as file:
+    with open("device_list_backup.csv") as file:
         devices = csv.DictReader(file)
         device_list = [dev for dev in devices]
         return device_list

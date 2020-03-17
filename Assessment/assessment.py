@@ -6,7 +6,7 @@ import os
 import sys
 from device_list import unpack_device_list
 from connect import ConnectManager as connect
-from dataframestest import dataframe
+from dataframestest import create_dataframes
 import pandas as pd
 
 devices = unpack_device_list()
@@ -43,14 +43,25 @@ class Assessment:
                     return os.path.join(subdir, direct)
 
     def write_to_excel(self, dataframes):
-        for hostname in dataframes.keys():
-            os.chdir(self.find_correct_folder(hostname))
-            writer = pd.ExcelWriter(hostname+".xlsx", engine="xlsxwriter")
-            for data in dataframes[hostname]:
-                for command, dataframe in data.items():
-                    df = pd.DataFrame(dataframe)
+        for df_type in dataframes.keys():
+            if "device_dataframe" == df_type:
+                for hostname in dataframes[df_type].keys():
+                    os.chdir(self.find_correct_folder(hostname))
+                    writer = pd.ExcelWriter(hostname+".xlsx", engine="xlsxwriter")
+                    for data in dataframes[df_type][hostname]:
+                        for command, df_dev in data.items():
+                            df = pd.DataFrame(df_dev)
+                            print(df)
+                            df.to_excel(writer, command)
+                    writer.save()
+            elif "command_dataframe" == df_type:
+                for command, df_cmd in dataframes[df_type].items():
+                    os.chdir(self.find_correct_folder("cisco_ios"))
+                    writer = pd.ExcelWriter(command+".xlsx", engine="xlsxwriter")
+                    df = pd.DataFrame(df_cmd)
+                    print(df)
                     df.to_excel(writer, command)
-            writer.save()
+                    writer.save()
     
     def create_folder_structure(self, devices_data):
         folders = set([dev["device_type"] for dev in devices])
@@ -72,7 +83,7 @@ class Assessment:
 customer = Assessment("Salcobrand")
 devices_data = connect.ssh(devices, customer.ios_commands, textfsm=True)
 customer.create_folder_structure(devices_data)
-dataframes = dataframe(devices_data)
+dataframes = create_dataframes(devices_data)
 customer.write_to_excel(dataframes)
 
 
