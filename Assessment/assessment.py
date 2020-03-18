@@ -55,13 +55,13 @@ class Assessment:
                             df.to_excel(writer, command)
                     writer.save()
             elif "command_dataframe" == df_type:
+                writer = pd.ExcelWriter("global_config.xlsx", engine="xlsxwriter")
                 for command, df_cmd in dataframes[df_type].items():
                     os.chdir(self.find_correct_folder("cisco_ios"))
-                    writer = pd.ExcelWriter(command+".xlsx", engine="xlsxwriter")
                     df = pd.DataFrame(df_cmd)
                     print(df)
                     df.to_excel(writer, command)
-                    writer.save()
+                writer.save()
     
     def create_folder_structure(self, devices_data):
         folders = set([dev["device_type"] for dev in devices])
