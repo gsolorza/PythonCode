@@ -29,7 +29,20 @@ def write(filename, path, data):
 
 class Assessment:
 
-    ios_commands = ["show interfaces", "show interface status", "show version", "show running-config", "show logging", "show process cpu", "show process memory sorted"]
+    ios_commands = [
+        "show interfaces", 
+        "show interface status", 
+        "show version", 
+        "show running-config", 
+        "show logging", 
+        "show process cpu", 
+        "show process memory sorted",
+        "show interfaces switchport",
+        "show spanning-tree",
+        "show interface transeiver",
+        "show inventory",
+        "dir",
+        "show env temperature"]
 
     def __init__(self, customer_name):
         self.customer_name = customer_name
@@ -51,7 +64,6 @@ class Assessment:
                     for data in dataframes[df_type][hostname]:
                         for command, df_dev in data.items():
                             df = pd.DataFrame(df_dev)
-                            print(df)
                             df.to_excel(writer, command)
                     writer.save()
             elif "command_dataframe" == df_type:
@@ -59,7 +71,6 @@ class Assessment:
                 for command, df_cmd in dataframes[df_type].items():
                     os.chdir(self.find_correct_folder("cisco_ios"))
                     df = pd.DataFrame(df_cmd)
-                    print(df)
                     df.to_excel(writer, command)
                 writer.save()
     

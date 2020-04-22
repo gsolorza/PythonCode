@@ -30,7 +30,7 @@ def create_dataframes(data):
                             for key, value in item.items():
                                 if isinstance(value, list):
                                     value = [str(val) for val in value]
-                                    value = " # ".join(value)
+                                    value = " ".join(value)
                                 try:
                                     value = int(value)
                                 except:
@@ -41,25 +41,28 @@ def create_dataframes(data):
                                 except KeyError:
                                     df[key] = []
                                     df[key].append(value)
-             
-                        df_dev = copy.deepcopy(df)
-                        dataframes["device_dataframe"][hname].append({command: df_dev})
 
-                        df_cmd = copy.deepcopy(df)
+                        if df:
+                            df_dev = copy.deepcopy(df)
+                            dataframes["device_dataframe"][hname].append({command: df_dev})
 
-                        for values in df_cmd.values():
-                            size = len(values)
-                            hosts = [hname for host in range(size)]
-                            break
-                        df_cmd.update({"hostname": hosts})
+                            df_cmd = copy.deepcopy(df)
 
-                        if command in dataframes["command_dataframe"].keys():
-                            source = {}
-                            source.update(dataframes["command_dataframe"][command])
-                            result = merge(source, df_cmd)
-                            dataframes["command_dataframe"][command] = result
+                            for values in df_cmd.values():
+                                size = len(values)
+                                hosts = [hname for host in range(size)]
+                                break
+
+                            df_cmd.update({"hostname": hosts})
+
+                            if command in dataframes["command_dataframe"].keys():
+                                source = copy.deepcopy(dataframes["command_dataframe"][command])
+                                result = merge(source, df_cmd)
+                                dataframes["command_dataframe"][command] = result
+                            else:
+                                dataframes["command_dataframe"][command] = df_cmd
                         else:
-                            dataframes["command_dataframe"][command] = df_cmd
+                            pass
 
                     except Exception as failure:
                         print("Failure: {}".format(failure))

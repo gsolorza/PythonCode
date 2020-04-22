@@ -17,10 +17,11 @@ device_list = unpack_device_list()
 def connect(device_list):
     for device in tqdm(device_list, ascii=True):
         try:
-            connection = ConnectHandler(**device)       
+           pass        
         except Exception as failure:
-            print("SOMETHING WENT WRONG CONNECTING TO HOST "+device["host"]+" VIA SSH\nERROR --> "+failure)
+            print("SOMETHING WENT WRONG CONNECTING TO HOST {} VIA SSH\nERROR --> {}".format(device["host"],failure))
             continue
+        connection = ConnectHandler(**device)
         print(connection.host)
         print(connection.send_command("show users"))
 

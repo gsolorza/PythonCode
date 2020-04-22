@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 
+import logging
 from netmiko import ConnectHandler
 from tqdm import tqdm
 import json
 from paramiko.ssh_exception import SSHException
 from netmiko.ssh_exception import NetMikoAuthenticationException
 from paramiko.ssh_exception import AuthenticationException
+
+logging.basicConfig(filename="Netmiko.log", level=logging.DEBUG)
+logger = logging.getLogger("ConnectHandler")
 
 class ConnectManager:
 
@@ -15,16 +19,17 @@ class ConnectManager:
         for device in tqdm(device_list, ascii=True):
             print(device["host"])
             try:
+                device["global_delay_factor"] = 3
                 connection = ConnectHandler(**device)
 
             except AuthenticationException:
-                device["username"] = "salcobrand"
-                device["password"] = "s1lc4br1nd"
+                device["username"] = "ibustamante"
+                device["password"] = "Salco.2020"
                 connection = ConnectHandler(**device)
 
             except SSHException:
                 try:
-                    print("SSH")
+                    print("USING TELNET")
                     telnet_device = {}
                     telnet_device.update(device)
                     telnet_device["device_type"] = "cisco_ios_telnet"
@@ -32,14 +37,14 @@ class ConnectManager:
 
                 except ConnectionResetError:
                     print("TELNET PASSWORD ERROR RESET")
-                    telnet_device["username"] = "salcobrand"
-                    telnet_device["password"] = "s1lc4br1nd"
+                    telnet_device["username"] = "ibustamante"
+                    telnet_device["password"] = "Salco.2020"
                     connection = ConnectHandler(**telnet_device)
 
                 except NetMikoAuthenticationException:
                     print("TELNET PASSWORD ERROR")
-                    telnet_device["username"] = "salcobrand"
-                    telnet_device["password"] = "s1lc4br1nd"
+                    telnet_device["username"] = "ibustamante"
+                    telnet_device["password"] = "Salco.2020"
                     connection = ConnectHandler(**telnet_device)
 
                 except Exception as failure:
@@ -54,6 +59,7 @@ class ConnectManager:
                         print(hostname)
                         dcom = {hostname: []}
                         for command in commands:
+                            print("Collecting Information: "+command)
                             output_list = connection.send_command(command, use_textfsm=textfsm)
                             cm = command.replace(" ", "_")
                             dcom[hostname].append({cm: output_list})
@@ -76,6 +82,7 @@ class ConnectManager:
                     print(hostname)
                     dcom = {hostname: []}
                     for command in commands:
+                        print("Collecting Information: "+command)
                         output_list = connection.send_command(command, use_textfsm=textfsm)
                         cm = command.replace(" ", "_")
                         dcom[hostname].append({cm: output_list})
