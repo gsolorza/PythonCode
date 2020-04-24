@@ -7,9 +7,8 @@ import sys
 from device_list import unpack_device_list
 from connect import ConnectManager as connect
 from dataframestest import create_dataframes
+import inventory
 import pandas as pd
-
-devices = unpack_device_list()
 
 def write(filename, path, data):
     if isinstance(data, list):
@@ -29,21 +28,6 @@ def write(filename, path, data):
 
 class Assessment:
 
-    ios_commands = [
-        "show interfaces", 
-        "show interface status", 
-        "show version", 
-        "show running-config", 
-        "show logging", 
-        "show process cpu", 
-        "show process memory sorted",
-        "show interfaces switchport",
-        "show spanning-tree",
-        "show interface transeiver",
-        "show inventory",
-        "dir",
-        "show env temperature"]
-
     def __init__(self, customer_name):
         self.customer_name = customer_name
         self.project_folder = os.path.join(os.getcwd(), self.customer_name)
@@ -55,7 +39,7 @@ class Assessment:
                 if direct == folder_name:
                     return os.path.join(subdir, direct)
 
-    def write_to_excel(self, dataframes):
+    def write_to_excel(self, folder_name, dataframes):
         for df_type in dataframes.keys():
             if "device_dataframe" == df_type:
                 for hostname in dataframes[df_type].keys():
@@ -69,18 +53,17 @@ class Assessment:
             elif "command_dataframe" == df_type:
                 writer = pd.ExcelWriter("global_config.xlsx", engine="xlsxwriter")
                 for command, df_cmd in dataframes[df_type].items():
-                    os.chdir(self.find_correct_folder("cisco_ios"))
+                    os.chdir(self.find_correct_folder(folder_name))
                     df = pd.DataFrame(df_cmd)
                     df.to_excel(writer, command)
                 writer.save()
     
-    def create_folder_structure(self, devices_data):
-        folders = set([dev["device_type"] for dev in devices])
+    def create_folder_structure(self, folder_name, devices_data):
 
-        for folder in folders:
-            device_type_folder = os.path.join(self.project_folder, folder)
-            os.makedirs(device_type_folder, exist_ok=True)
-            write("devices_data", device_type_folder, devices_data)
+        device_type_folder = os.path.join(self.project_folder, folder_name)
+        os.makedirs(device_type_folder, exist_ok=True)
+        write("devices_data", device_type_folder, devices_data)
+
         for device in devices_data:
             for hostname, device_data in device.items():
                 path = os.path.join(device_type_folder, hostname)
@@ -90,12 +73,15 @@ class Assessment:
                             write(command, path, output)
 
 
+customer = Assessment("Falabella")
+device_list = inventory.Devices("device_list.csv")
+device_list.unpack_device_list()
 
-customer = Assessment("Salcobrand")
-devices_data = connect.ssh(devices, customer.ios_commands, textfsm=True)
-customer.create_folder_structure(devices_data)
-dataframes = create_dataframes(devices_data)
-customer.write_to_excel(dataframes)
+for device_type, data in device_list.global_devices.items():
+    devices_data = connect.ssh(data["device_list"], data["commands"], textfsm=True)
+    customer.create_folder_structure(device_type, devices_data)
+    dataframes = create_dataframes(devices_data)
+    customer.write_to_excel(device_type, dataframes)
 
 
 

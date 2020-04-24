@@ -11,6 +11,12 @@ from paramiko.ssh_exception import AuthenticationException
 logging.basicConfig(filename="Netmiko.log", level=logging.DEBUG)
 logger = logging.getLogger("ConnectHandler")
 
+def validate_hostname(prompt):
+    if ":" in prompt:
+        hostname = prompt.split(":")[1]
+    else:
+        hostname = prompt
+    return hostname
 class ConnectManager:
 
     @staticmethod
@@ -23,8 +29,8 @@ class ConnectManager:
                 connection = ConnectHandler(**device)
 
             except AuthenticationException:
-                device["username"] = "ibustamante"
-                device["password"] = "Salco.2020"
+                device["username"] = "tottus"
+                device["password"] = "T0ttu$19"
                 connection = ConnectHandler(**device)
 
             except SSHException:
@@ -55,7 +61,7 @@ class ConnectManager:
                     try:
                         connection.write_channel("enable\n")
                         connection.write_channel("Red3s#63_1")
-                        hostname = connection.base_prompt
+                        hostname = validate_hostname(connection.base_prompt)
                         print(hostname)
                         dcom = {hostname: []}
                         for command in commands:
@@ -78,7 +84,7 @@ class ConnectManager:
                 try:
                     connection.write_channel("enable\n")
                     connection.write_channel("Red3s#63_1")
-                    hostname = connection.base_prompt
+                    hostname = validate_hostname(connection.base_prompt)
                     print(hostname)
                     dcom = {hostname: []}
                     for command in commands:
