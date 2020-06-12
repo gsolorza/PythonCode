@@ -38,7 +38,7 @@ class ConnectManager:
                     print("USING TELNET")
                     telnet_device = {}
                     telnet_device.update(device)
-                    telnet_device["device_type"] = "cisco_ios_telnet"
+                    telnet_device["device_type"] = telnet_device["device_type"]+"_telnet"
                     connection = ConnectHandler(**telnet_device)
 
                 except ConnectionResetError:

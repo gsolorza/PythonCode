@@ -8,7 +8,7 @@ class Devices:
     commands = {
         "cisco_ios": 
         [
-            "show version"
+            "show etherchannel summary"
         ],
         "cisco_nxos": 
         [
@@ -16,7 +16,8 @@ class Devices:
         ],
         "cisco_xr": 
         [
-            "show version"
+            "show version",
+            "show interface brief"
         ]
     }
 
@@ -36,7 +37,5 @@ class Devices:
                     self.global_devices[device_type]["commands"].extend(self.commands[device_type])
 
             
-
-
 
 

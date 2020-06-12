@@ -1,8 +1,2 @@
 device_type,host,username,password
-cisco_ios,10.10.10.10,cisco,cisco
-cisco_ios,20.20.20.20,cisco,cisco
-cisco_xr,1.1.1.1,cisco,cisco
-cisco_xr,2.2.2.2,cisco,cisco
-cisco_xr,3.3.3.3,cisco,cisco
-cisco_xr,4.4.4.4,cisco,cisco
-cisco_xr,5.5.5.5,cisco,cisco
+
