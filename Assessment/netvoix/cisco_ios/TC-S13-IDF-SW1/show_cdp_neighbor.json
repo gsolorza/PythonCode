@@ -1,0 +1,1 @@
+[{"neighbor": "TC-S14-IDF-SW1.ubsarena.local", "local_interface": "Ten 1/0/2", "capability": "S I", "platform": "WS-C3560C", "neighbor_interface": "Ten 1/0/1"}, {"neighbor": "TC-S12-IDF-SW1.ubsarena.local", "local_interface": "Ten 1/0/1", "capability": "S I", "platform": "WS-C3560C", "neighbor_interface": "Ten 2/0/2"}]

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 import logging
 from netmiko import ConnectHandler
 from tqdm import tqdm
@@ -7,6 +6,7 @@ import json
 from paramiko.ssh_exception import SSHException
 from netmiko.ssh_exception import NetMikoAuthenticationException
 from paramiko.ssh_exception import AuthenticationException
+import time
 
 logging.basicConfig(filename="Netmiko.log", level=logging.DEBUG)
 logger = logging.getLogger("ConnectHandler")
@@ -18,7 +18,6 @@ def validate_hostname(prompt):
         hostname = prompt
     return hostname
 class ConnectManager:
-
     @staticmethod
     def ssh(device_list, commands, textfsm=False):
         commands_output = []
@@ -27,12 +26,10 @@ class ConnectManager:
             try:
                 device["global_delay_factor"] = 3
                 connection = ConnectHandler(**device)
-
             except AuthenticationException:
-                device["username"] = "tottus"
-                device["password"] = "T0ttu$19"
+                device["username"] = "ext_aantriveros"
+                device["password"] = "Seguridad20"
                 connection = ConnectHandler(**device)
-
             except SSHException:
                 try:
                     print("USING TELNET")
@@ -40,27 +37,23 @@ class ConnectManager:
                     telnet_device.update(device)
                     telnet_device["device_type"] = telnet_device["device_type"]+"_telnet"
                     connection = ConnectHandler(**telnet_device)
-
                 except ConnectionResetError:
                     print("TELNET PASSWORD ERROR RESET")
                     telnet_device["username"] = "ibustamante"
                     telnet_device["password"] = "Salco.2020"
                     connection = ConnectHandler(**telnet_device)
-
                 except NetMikoAuthenticationException:
                     print("TELNET PASSWORD ERROR")
                     telnet_device["username"] = "ibustamante"
                     telnet_device["password"] = "Salco.2020"
                     connection = ConnectHandler(**telnet_device)
-
                 except Exception as failure:
                     print("THERE IS AN ERROR WITH THE DEVICE:\n--> {} <-- and the error was {}".format(device["host"], failure))
                     continue
-
                 finally:
                     try:
-                        connection.write_channel("enable\n")
-                        connection.write_channel("Red3s#63_1")
+                        # connection.write_channel("enable\n")
+                        # connection.write_channel("Red3s#63_1")
                         hostname = validate_hostname(connection.base_prompt)
                         print(hostname)
                         dcom = {hostname: []}
@@ -74,16 +67,14 @@ class ConnectManager:
                     except Exception as failure:
                         print("THERE IS AN ERROR TRYING TO CONNECT TO THE DEVICE:\n--> {} <-- and the error was {}".format(device["host"], failure))
                         continue
-
-
             except Exception as failure:
                 print("THERE IS AN ERROR TRYING TO CONNECT TO THE DEVICE:\n--> {} <-- and the error was {}".format(device["host"], failure))
                 continue
             
             finally:
                 try:
-                    connection.write_channel("enable\n")
-                    connection.write_channel("Red3s#63_1")
+                    # connection.write_channel("enable\n")
+                    # connection.write_channel("Red3s#63_1")
                     hostname = validate_hostname(connection.base_prompt)
                     print(hostname)
                     dcom = {hostname: []}
@@ -98,11 +89,4 @@ class ConnectManager:
                     print("THERE IS AN ERROR TRYING TO CONNECT TO THE DEVICE:\n--> {} <-- and the error was {}".format(device["host"], failure))
                     continue
                     
-
         return commands_output
-
-
-
-
-
-

@@ -1,0 +1,1 @@
+[{"vlan_name": "CORE1", "vlan_id": "4094"}, {"vlan_name": "CORE2", "vlan_id": "4093"}, {"vlan_name": "DDI", "vlan_id": "4089"}, {"vlan_name": "DDI2_Infoblox", "vlan_id": "4088"}, {"vlan_name": "Default", "vlan_id": "1"}, {"vlan_name": "FW_SAP_ERP", "vlan_id": "1711"}, {"vlan_name": "loop_id", "vlan_id": "4091"}, {"vlan_name": "Mgmt", "vlan_id": "4095"}]

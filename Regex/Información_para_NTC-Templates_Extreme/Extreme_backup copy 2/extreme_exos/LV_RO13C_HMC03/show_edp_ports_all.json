@@ -1,0 +1,1 @@
+[{"port": "Port", "neighbor": "Neighbor", "neighbor_id": "Neighbor-ID", "remote_port": "Remote", "num_vlans": "Num"}, {"port": "1", "neighbor": "LV_RG14C_HMC_13", "neighbor_id": "00:00:00:04:96:51:de:aa", "remote_port": "1:10", "num_vlans": "1"}, {"port": "24", "neighbor": "LV_RG14C_HMC_13", "neighbor_id": "00:00:00:04:96:51:de:aa", "remote_port": "1:12", "num_vlans": "1"}]

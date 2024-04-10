@@ -1,0 +1,1 @@
+[{"vlan_name": "CORE1", "vlan_id": "4093"}, {"vlan_name": "CORE2", "vlan_id": "4092"}, {"vlan_name": "Default", "vlan_id": "1"}, {"vlan_name": "loop_id", "vlan_id": "4091"}, {"vlan_name": "Mgmt", "vlan_id": "4095"}, {"vlan_name": "NetApp", "vlan_id": "4094"}]

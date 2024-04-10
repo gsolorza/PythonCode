@@ -1,0 +1,1 @@
+[{"neighbor": "MTR-1A-21-Core1.ubsarena.local(FGE24436N4C)", "local_interface": "Twe 1/1/2", "capability": "R S I C", "platform": "N9K-C9508", "neighbor_interface": "Eth 1/19"}, {"neighbor": "MTR-1A-26-Core2.ubsarena.local(FGE24446NEW)", "local_interface": "Twe 2/1/2", "capability": "R S I C", "platform": "N9K-C9508", "neighbor_interface": "Eth 1/19"}]

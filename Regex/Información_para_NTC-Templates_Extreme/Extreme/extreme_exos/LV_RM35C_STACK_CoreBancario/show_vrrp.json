@@ -1,0 +1,1 @@
+[{"vlan_name": "Serv_Co", "flag": "En", "vrid": "120", "priority": "120", "virtual_ip_address": "10.1.72.2", "state": "MSTR", "master_mac_address": "00:00:5e:00:01:78"}]

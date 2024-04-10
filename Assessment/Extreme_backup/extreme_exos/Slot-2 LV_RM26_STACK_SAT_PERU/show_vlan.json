@@ -1,0 +1,1 @@
+[{"vlan_name": "Balanceo", "vlan_id": "629"}, {"vlan_name": "Default", "vlan_id": "1"}, {"vlan_name": "Externa", "vlan_id": "640"}, {"vlan_name": "GW_Oracle", "vlan_id": "4000"}, {"vlan_name": "Mgmt", "vlan_id": "4095"}, {"vlan_name": "RAC", "vlan_id": "4092"}, {"vlan_name": "Servidores", "vlan_id": "631"}]

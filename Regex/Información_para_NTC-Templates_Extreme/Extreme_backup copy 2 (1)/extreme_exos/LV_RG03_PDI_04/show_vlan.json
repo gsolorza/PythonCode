@@ -1,0 +1,1 @@
+[{"vlan_name": "Default", "vlan_id": "1"}, {"vlan_name": "Mgmt", "vlan_id": "4095"}, {"vlan_name": "pdi", "vlan_id": "4094"}, {"vlan_name": "PDI2", "vlan_id": "132"}, {"vlan_name": "PDI3", "vlan_id": "142"}, {"vlan_name": "PDI_SAT_AR", "vlan_id": "4080"}, {"vlan_name": "PDI_SOD_AR_ACI", "vlan_id": "2160"}]

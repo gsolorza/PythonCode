@@ -8,16 +8,26 @@ class Devices:
     commands = {
         "cisco_ios": 
         [
-            "show etherchannel summary"
+            "show cdp neighbor"
         ],
         "cisco_nxos": 
         [
-            "show version"
+            "show cdp neighbor"
         ],
         "cisco_xr": 
         [
             "show version",
             "show interface brief"
+        ],
+        "extreme_exos": 
+        [   
+            "show cdp neighbor",
+            "show edp ports all",
+            "show fdb",
+            "show iparp",
+            "show lldp neighbor detail",
+            "show vlan",
+            "show vrrp"
         ]
     }
 

@@ -1,3 +1,5 @@
-device_type,host,username,password
-cisco_ios,10.10.10.10,cisco,cisco
-cisco_ios,20.20.20.20,cisco,cisco
+device_type,host
+extreme_exos,10.108.2.3,ext_aantriveros,Seguridad20
+extreme_exos,10.140.10.170,ext_aantriveros,Seguridad20
+extreme_exos,10.140.9.254,ext_aantriveros,Seguridad20
+extreme_exos,10.140.9.57,ext_aantriveros,Seguridad20

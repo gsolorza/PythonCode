@@ -1,0 +1,1 @@
+[{"vlan_name": "Default", "vlan_id": "1"}, {"vlan_name": "DMZ_Desarrollo", "vlan_id": "4094"}, {"vlan_name": "DMZ_Desarrollo2", "vlan_id": "139"}, {"vlan_name": "DMZ_POC_IVR", "vlan_id": "1803"}, {"vlan_name": "Mgmt", "vlan_id": "4095"}]

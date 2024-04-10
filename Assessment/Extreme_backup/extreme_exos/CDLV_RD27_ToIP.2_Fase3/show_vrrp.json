@@ -1,0 +1,1 @@
+[{"vlan_name": "Adminis", "flag": "En", "vrid": "10", "priority": "99", "virtual_ip_address": "10.1.254.65", "state": "BKUP", "master_mac_address": "00:00:5e:00:01:0a"}, {"vlan_name": "Producc", "flag": "En", "vrid": "10", "priority": "99", "virtual_ip_address": "10.1.254.1", "state": "BKUP", "master_mac_address": "00:00:5e:00:01:0a"}]

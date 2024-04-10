@@ -113,7 +113,7 @@ class Assessment:
 
         return dev_data
 
-customer = Assessment("Falabella-Prueba-Etherchannel")
+customer = Assessment("netvoix")
 device_list = inventory.Devices("device_list.csv")
 device_list.unpack_device_list()
 

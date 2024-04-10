@@ -1,0 +1,1 @@
+[{"stpd_instance": "STP-YASTAY", "stp_status": "ENABLED", "vlan_tag": "786", "ports": "4:2*,4:3", "participating_vlans": "Yastay", "root_port": "4:3", "bridge_id": "", "designated_root": "", "port_flags": ""}]
